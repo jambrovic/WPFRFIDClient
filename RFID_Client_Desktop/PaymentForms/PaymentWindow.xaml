@@ -1,0 +1,154 @@
+﻿<Window x:Class="RFIDClient.Desktop.PaymentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RFIDClient.Desktop"
+        mc:Ignorable="d"
+        Title="Odabir plaćanja" Height="300" Width="300" ResizeMode="NoResize">
+
+    <!--<Window.Resources>
+        <ControlTemplate x:Key="PaymentTypeButton" TargetType="RadioButton">
+            <RadioButton
+                Margin="3"
+                Width="Auto"
+                Height="Auto"
+                Foreground="White"
+                Background="{TemplateBinding Background}"
+                FontSize="20"
+                FontWeight="Bold"
+                Content="{TemplateBinding Content}"
+                >
+
+            </RadioButton>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="DialogButton" TargetType="Button">
+            <Button
+                Margin="3"
+                Width="Auto"
+                Height="Auto"
+                Foreground="White"
+                Background="{TemplateBinding Background}"
+                FontSize="20"
+                FontWeight="Bold"
+                Content="{TemplateBinding Content}"
+                >
+
+            </Button>
+        </ControlTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <RadioButton Style="{StaticResource {x:Type ToggleButton}}"
+                     GroupName="CardPayments"
+                     Grid.Row="0" Grid.Column="0" 
+                     Margin="3"
+                     Width="Auto"
+                     Height="Auto"
+                     x:Name="btnPaymentCash" 
+                     Click="btnPaymentCash_Click">
+            <Viewbox>
+                <Image Source="/Images/Icons_64x64/cash.png"/>
+            </Viewbox>
+
+        </RadioButton>
+        <RadioButton Style="{StaticResource {x:Type ToggleButton}}"
+                     GroupName="CardPayments"
+                     Grid.Row="0" Grid.Column="1" 
+                     Margin="3"
+                     Width="Auto"
+                     Height="Auto"
+                     x:Name="btnPaymentCards" 
+                     Click="btnPaymentCards_Click">
+
+            <Viewbox>
+                <Image Source="/Images/Icons_64x64/cash.png"/>
+            </Viewbox>
+        </RadioButton>
+        
+        <RadioButton Style="{StaticResource {x:Type ToggleButton}}"
+                     GroupName="CardPayments"
+                     Grid.Row="1" Grid.Column="0" Margin="3"
+                     Width="Auto"
+                     Height="Auto"
+                     x:Name="btnPaymentAmex" 
+                     Click="btnPaymentAmex_Click">
+            <Viewbox>
+                <Image Source="/Images/Icons_64x64/american-express.png"/>
+            </Viewbox>
+        </RadioButton>
+
+        <RadioButton Style="{StaticResource {x:Type ToggleButton}}"  
+                     GroupName="CardPayments"
+                     Margin="3"
+                     Width="Auto"
+                     Height="Auto"
+                     Grid.Row="1" Grid.Column="1"  x:Name="btnPaymentMaster" Click="btnPaymentMaster_Click">
+            <Viewbox>
+                <Image Source="/Images/Icons_64x64/mastercard.png"/>
+            </Viewbox>
+        </RadioButton>
+
+        <RadioButton Style="{StaticResource {x:Type ToggleButton}}"  Margin="3"
+                     GroupName="CardPayments"
+                     Width="Auto"
+                     Height="Auto"
+                     Grid.Row="2" Grid.Column="0"  x:Name="btnPaymentDiners" Click="btnPaymentDiners_Click">
+            <Viewbox>
+                <Image Source="/Images/Icons_64x64/diners-club.png"/>
+            </Viewbox>
+        </RadioButton>
+        
+        <RadioButton Style="{StaticResource {x:Type ToggleButton}}"  Margin="3"
+                     GroupName="CardPayments"
+                     Width="Auto"
+                     Height="Auto"
+                     Grid.Row="2" Grid.Column="1"  x:Name="btnPaymentVisa" Click="btnPaymentVisa_Click">
+            <Viewbox>
+                <Image Source="/Images/Icons_64x64/visa.png"/>
+            </Viewbox>
+        </RadioButton>
+        
+        <RadioButton Style="{StaticResource {x:Type ToggleButton}}"  Margin="3"
+                     GroupName="CardPayments"
+                     Width="Auto"
+                     Height="Auto"
+                     Grid.Row="3" Grid.Column="0"  x:Name="btnPaymentMaestro" Click="btnPaymentMaestro_Click">
+            <Viewbox>
+                <Image Source="/Images/Icons_64x64/maestro.png"/>
+            </Viewbox>
+        </RadioButton>
+        
+        <RadioButton Style="{StaticResource {x:Type ToggleButton}}"  Margin="3"
+                     GroupName="CardPayments"
+                     Width="Auto"
+                     Height="Auto"
+                     Grid.Row="3" Grid.Column="1"  x:Name="btnPaymentCek" Click="btnPaymentCek_Click">
+            <Viewbox>
+                <Image Source="/Images/Icons_64x64/paypal_big.png"/>
+            </Viewbox>
+
+        </RadioButton>
+        <Button Template="{StaticResource DialogButton}" Grid.Row="4" Grid.Column="0" Background="Gray" x:Name="btnCancel" IsCancel="True" Click="btnCancel_Click">ODUSTANI</Button>
+        <Button Template="{StaticResource DialogButton}" Grid.Row="4" Grid.Column="1" x:Name="btnOK" IsDefault="True" Click="btnOK_Click">
+            <Viewbox Margin="2">
+                <Image Source="/Images/Icons_64x64/receipt_print.png"/>
+            </Viewbox>
+
+        </Button>
+
+    </Grid>-->
+</Window>

@@ -1,0 +1,169 @@
+﻿<local:BasePage x:TypeArguments="local:ItemViewModel"  x:Class="RFIDClient.Desktop.NewItemPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RFIDClient.Desktop"
+      mc:Ignorable="d"
+      d:DesignHeight="300" d:DesignWidth="300"
+      Width="400"
+      Height="300"
+      Title="NewItemPage"
+      x:Name="Proizvod">
+
+
+    <Border BorderThickness="1" 
+            BorderBrush="{StaticResource BackgroundLightBrush}" 
+            CornerRadius="10"
+            Background="{StaticResource BackgroundLightBrush}"
+            >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" 
+                       Grid.Column="0" 
+                       Grid.ColumnSpan="2" 
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Center"
+                       FontSize="{StaticResource FontSizeLarge}" 
+                       FontFamily="{StaticResource LatoRegular}"
+                       Foreground="{StaticResource WordBlueBrush}">
+                Novi proizvod
+            </TextBlock>
+
+            <!-- Code label -->
+            <TextBlock 
+                Grid.Row="1" 
+                Grid.Column="0" 
+                Style="{StaticResource FormTextBlock}"
+                Text="Šifra:"
+                />
+
+            <!-- Barcode label -->
+            <TextBlock 
+                Grid.Row="2" 
+                Grid.Column="0" 
+                Style="{StaticResource FormTextBlock}"
+                Text="Barcode:"
+                />
+
+            <!-- RFID Code label -->
+            <TextBlock 
+                Grid.Row="3" 
+                Grid.Column="0" 
+                Style="{StaticResource FormTextBlock}"
+                Text="RFID code:"/>
+
+            <!-- Name label -->
+            <TextBlock 
+                Grid.Row="4" 
+                Grid.Column="0" 
+                Style="{StaticResource FormTextBlock}"
+                Text="Naziv:"/>
+
+            <!-- Unit price label -->
+            <TextBlock 
+                Grid.Row="5" 
+                Grid.Column="0"
+                Style="{StaticResource FormTextBlock}"
+                Text="Jedinična cijena:"/>
+
+            <TextBox 
+                x:Name="txtBarcode" 
+                Width="200" 
+                Height="30" 
+                Grid.Row="1" 
+                Grid.Column="1" 
+                VerticalAlignment="Center" 
+                DataContext="{Binding Barcode}"
+                Style="{StaticResource BaseStyle}"
+                FontSize="{StaticResource FontSizeRegular}"/>
+
+            <TextBox 
+                x:Name="txtSecondaryCode" 
+                Width="200" 
+                Height="30" 
+                Grid.Row="2" 
+                Grid.Column="1" 
+                VerticalAlignment="Center" 
+                DataContext="{Binding SecondaryCode}"
+                Style="{StaticResource BaseStyle}"
+                FontSize="{StaticResource FontSizeRegular}"/>
+
+            <TextBox 
+                x:Name="txtRFIDCode" 
+                Width="200" 
+                Height="30" 
+                Grid.Row="3" 
+                Grid.Column="1" 
+                VerticalAlignment="Center" 
+                DataContext="{Binding RFIDCode}" 
+                Style="{StaticResource BaseStyle}"
+                FontSize="{StaticResource FontSizeRegular}"/>
+
+            <TextBox 
+                x:Name="txtName" 
+                Width="200" 
+                Height="30" 
+                Grid.Row="4" 
+                Grid.Column="1" 
+                VerticalAlignment="Center" 
+                DataContext="{Binding Name}"
+                Style="{StaticResource BaseStyle}"
+                FontSize="{StaticResource FontSizeRegular}"/>
+
+            <TextBox 
+                x:Name="txtUnitPrice" 
+                Width="200" 
+                Height="30" 
+                Grid.Row="5" 
+                Grid.Column="1" 
+                VerticalAlignment="Center" 
+                DataContext="{Binding UnitPrice}"
+                Style="{StaticResource BaseStyle}"
+                FontSize="{StaticResource FontSizeRegular}"/>
+
+            <Grid Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Button 
+                    Grid.Column="0" 
+                    Grid.Row="0" 
+                    IsDefault="True" 
+                    Content="DODAJ"
+                    Margin="3"
+                    Padding="0"
+                    Command="{Binding InsertCommand}"
+                    CommandParameter="{Binding ElementName=Proizvod}"
+                    />
+
+                <Button 
+                    Grid.Column="1" 
+                    Grid.Row="0" 
+                    IsCancel="True"
+                    Content="ODUSTANI"
+                    Margin="3"
+                    Padding="0"
+                    Command="{Binding CloseCommand}"
+                    CommandParameter="{Binding ElementName=Proizvod}"
+                    />
+            </Grid>
+        </Grid>
+    </Border>
+</local:BasePage>

@@ -1,0 +1,160 @@
+﻿<local:BasePage x:TypeArguments="local:PaymentViewModel" x:Class="RFIDClient.Desktop.PaymentPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RFIDClient.Desktop"
+      xmlns:core="clr-namespace:RFIDClient.Desktop.Core;assembly=RFIDClient.Desktop.Core"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+                Height="300"
+                Width="300"
+      Title="Odabir vrste plaćanja">
+
+    <Page.Resources>
+        <ControlTemplate x:Key="PaymentTypeButton" TargetType="RadioButton">
+            <RadioButton
+                Margin="3"
+                Width="Auto"
+                Height="Auto"
+                Foreground="White"
+                Background="{TemplateBinding Background}"
+                FontSize="20"
+                FontWeight="Bold"
+                Content="{TemplateBinding Content}"
+                >
+
+            </RadioButton>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="DialogButton" TargetType="Button">
+            <Button
+                Margin="3"
+                Width="Auto"
+                Height="Auto"
+                Foreground="White"
+                Background="{TemplateBinding Background}"
+                FontSize="20"
+                FontWeight="Bold"
+                Content="{TemplateBinding Content}"
+                >
+
+            </Button>
+        </ControlTemplate>
+    </Page.Resources>
+    <Border BorderThickness="1" 
+            BorderBrush="{StaticResource BackgroundLightBrush}" 
+            CornerRadius="10"
+            Background="{StaticResource ForegroundMainBrush}"
+            >
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Odabir vrste plaćanja" Grid.Row="0" Grid.Column="0" 
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center"
+                                   FontSize="{StaticResource FontSizeLarge}" 
+                                   FontFamily="{StaticResource LatoRegular}"
+                                   Foreground="{StaticResource WordBlueBrush}"
+                                   Grid.ColumnSpan="2"/>
+
+            <Button Style="{StaticResource PaymentButtonMedium}"
+                     Grid.Row="1" Grid.Column="0" 
+                     Margin="3"
+                     Width="Auto"
+                     Height="Auto"
+                     x:Name="btnPaymentCash"
+                    Grid.ColumnSpan="2"
+                     Content="{Binding Source={x:Static core:PaymentImage.Cash}}"
+                    Command="{Binding PaymentCashCommand}"
+                    CommandParameter="{x:Static local:PaymentType.CASH}"/>
+
+
+
+            <Button Style="{StaticResource PaymentButtonMedium}"
+                     Grid.Row="2" Grid.Column="0" 
+                     Margin="3"
+                     Width="Auto"
+                     Height="Auto"
+                     x:Name="btnPaymentAmex" 
+                     Content="{Binding Source={x:Static core:PaymentImage.AmericanExpress}}"
+                    Command="{Binding PaymentAmericanExpressCommand}"
+                    CommandParameter="{x:Static local:PaymentType.AMERICANEXPRESS}"/>
+
+
+            <Button Style="{StaticResource PaymentButtonMedium}"
+                     Grid.Row="2" Grid.Column="1" 
+                     Margin="3"
+                     Width="Auto"
+                     Height="Auto"
+                     x:Name="btnPaymentMaster" 
+                     Content="{Binding Source={x:Static core:PaymentImage.MasterCard}}"
+                    Command="{Binding PaymentMasterCardCommand}"
+                    CommandParameter="{x:Static local:PaymentType.MASTERCARD}"/>
+
+            <Button Style="{StaticResource PaymentButtonMedium}"
+                     Grid.Row="3" Grid.Column="0" 
+                     Margin="3"
+                     Width="Auto"
+                     Height="Auto"
+                     x:Name="btnPaymentDiners" 
+                     Content="{Binding Source={x:Static core:PaymentImage.Diners}}"
+                    Command="{Binding PaymentDinersCommand}"
+                    CommandParameter="{x:Static local:PaymentType.DINERS}"/>
+
+            <Button Style="{StaticResource PaymentButtonMedium}"
+                     Grid.Row="3" Grid.Column="1" 
+                     Margin="3"
+                     Width="Auto"
+                     Height="Auto"
+                     x:Name="btnPaymentVisa" 
+                     Content="{Binding Source={x:Static core:PaymentImage.Visa}}"
+                    Command="{Binding PaymentVisaCommand}"
+                    CommandParameter="{x:Static local:PaymentType.VISA}"/>
+
+            <Button Style="{StaticResource PaymentButtonMedium}"
+                     Grid.Row="4" Grid.Column="0" 
+                     Margin="3"
+                     Width="Auto"
+                     Height="Auto"
+                     x:Name="btnPaymentMaestro" 
+                     Content="{Binding Source={x:Static core:PaymentImage.Maestro}}"
+                    Command="{Binding PaymentMaestroCommand}"
+                    CommandParameter="{x:Static local:PaymentType.MAESTRO}"/>
+
+            <Button Style="{StaticResource PaymentButtonMedium}"
+                     Grid.Row="4" Grid.Column="1" 
+                     Margin="3"
+                     Width="Auto"
+                     Height="Auto"
+                     x:Name="btnPaymentPayPal" 
+                     Content="{Binding Source={x:Static core:PaymentImage.PayPal}}"
+                    Command="{Binding PaymentPayPalCommand}"
+                    CommandParameter="{x:Static local:PaymentType.PAYPAL}"/>
+
+            <Button 
+                    Margin="3" 
+                    Grid.Row="5" 
+                    Grid.Column="0" 
+                    Padding="0"
+                    x:Name="btnCancel" 
+                    IsCancel="True" 
+                    Grid.ColumnSpan="2"
+                    Content="ODUSTANI"
+                Command="{Binding CloseCommand}"/>
+
+
+        </Grid>
+    </Border>
+</local:BasePage>

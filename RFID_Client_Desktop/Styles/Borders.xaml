@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:RFIDClient.Desktop">
+
+    <!-- Receipt header and footer border style -->
+    <Style TargetType="{x:Type Border}" x:Key="HeaderFooterBorderStyle">
+        <Setter Property="CornerRadius" Value="5"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ForegroundMainBrush}"/>
+        <Setter Property="BorderThickness" Value="0.7"/>
+        <Setter Property="Background" Value="{StaticResource BackgroundLightBrush}"/>
+        <Setter Property="Margin" Value="1"/>
+        <Setter Property="Padding" Value="2"/>
+    </Style>
+
+    <Style TargetType="{x:Type Border}" x:Key="FooterBorderBL">
+        <Setter Property="CornerRadius" Value="5 5 5 10"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ForegroundMainBrush}"/>
+        <Setter Property="BorderThickness" Value="0.7"/>
+        <Setter Property="Background" Value="{StaticResource BackgroundLightBrush}"/>
+        <Setter Property="Margin" Value="1"/>
+        <Setter Property="Padding" Value="2"/>
+    </Style>
+
+</ResourceDictionary>

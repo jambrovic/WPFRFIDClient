@@ -1,0 +1,87 @@
+﻿<local:BasePage x:TypeArguments="core:UserViewModel" x:Class="RFIDClient.Desktop.UpdateUserPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RFIDClient.Desktop"
+      xmlns:core="clr-namespace:RFIDClient.Desktop.Core;assembly=RFIDClient.Desktop.Core"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="600"
+      x:Name="UpdateUser"
+      Title="Ažuriranje korisnika">
+    
+    <Border>
+        <!-- Main content scroll -->
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <StackPanel 
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    TextBlock.TextAlignment="Center">
+
+                <Border Background="{StaticResource ForegroundLightBrush}" 
+                    CornerRadius="10"
+                    Padding="15 15 15 15"
+                    Grid.ColumnSpan="2"
+                    Grid.RowSpan="6"
+                    Margin="50 50 50 0"
+                        Width="500"
+                        Height="500"
+                    >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Labels -->
+                        <TextBlock Text="Ažuriranje  korisnika" Grid.Row="0" Grid.Column="0" 
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center"
+                                   FontSize="{StaticResource FontSizeLarge}" 
+                                   FontFamily="{StaticResource LatoRegular}"
+                                   Foreground="{StaticResource WordBlueBrush}"
+                                   Grid.ColumnSpan="2"/>
+                        <TextBlock Text="Ime:" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Style="{StaticResource FormTextBlock}"/>
+                        <TextBlock Text="Prezime:" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Style="{StaticResource FormTextBlock}"/>
+                        <TextBlock Text="Email:" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Style="{StaticResource FormTextBlock}"/>
+                        <TextBlock Text="Korisničko ime:" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" Style="{StaticResource FormTextBlock}"/>
+                        <TextBlock Text="Lozinka:" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" Style="{StaticResource FormTextBlock}"/>
+                        <TextBlock Text="Potvrdi lozinku:" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right" Style="{StaticResource FormTextBlock}"/>
+
+                        <!-- text entry fields -->
+                        <TextBox x:Name="txtName" Style="{StaticResource FormTextBox}" Grid.Row="1" Grid.Column="1"/>
+                        <TextBox x:Name="txtSurname" Style="{StaticResource FormTextBox}" Grid.Row="2" Grid.Column="1"/>
+                        <TextBox x:Name="txtEmail" Style="{StaticResource FormTextBox}" Grid.Row="3" Grid.Column="1"/>
+                        <TextBox x:Name="txtusername" Style="{StaticResource FormTextBox}" Grid.Row="4" Grid.Column="1"/>
+                        <PasswordBox x:Name="txtPassword" Style="{StaticResource FormPasswordBox}" Grid.Row="5" Grid.Column="1" />
+                        <PasswordBox x:Name="txtPasswordRetype" Style="{StaticResource FormPasswordBox}" Grid.Row="6" Grid.Column="1" />
+    
+                        <!-- Form Buttons -->
+                        <Grid Grid.Row="7" Grid.ColumnSpan="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Button Grid.Column="0" Margin="10 0 5 0">ODUSTANI</Button>
+                            <Button Grid.Column="1" Margin="5 0 10 0">AŽURIRAJ</Button>
+                        </Grid>
+                        
+
+                    </Grid>
+                </Border>
+            </StackPanel>
+            <!-- Login main content white box -->
+        </ScrollViewer>
+    </Border>
+</local:BasePage>

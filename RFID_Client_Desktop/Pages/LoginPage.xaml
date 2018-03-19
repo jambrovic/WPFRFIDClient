@@ -1,0 +1,64 @@
+﻿<local:BasePage x:TypeArguments="core:LoginViewModel" x:Class="RFIDClient.Desktop.LoginPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RFIDClient.Desktop"
+      xmlns:core="clr-namespace:RFIDClient.Desktop.Core;assembly=RFIDClient.Desktop.Core"
+      mc:Ignorable="d"
+      x:Name="Page"
+      d:DesignHeight="488.8" d:DesignWidth="533.6"
+      Title="LoginPage">
+
+    <Border>
+        <Grid>
+
+            <!-- Main content scroll -->
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <StackPanel 
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    TextBlock.TextAlignment="Center">
+
+                    <!-- Login main content white box -->
+                    <Border Background="{StaticResource ForegroundLightBrush}" 
+                            CornerRadius="10"
+                            Padding="15 50 15 15"
+                            Width="330"
+                            Margin="50 50 50 0">
+
+                        <StackPanel>
+
+                            <!-- Sign Up header -->
+                            <TextBlock Text="Prijava Korisnika" 
+                                   FontSize="{StaticResource FontSizeLarge}" 
+                                   FontFamily="{StaticResource LatoRegular}"
+                                   Foreground="{StaticResource WordBlueBrush}" />
+
+                            <!-- Sign up subtext-->
+                            <TextBlock Text="RFID POS v1.0." 
+                                       FontSize="{StaticResource FontSizeRegular}"
+                                       Foreground="{StaticResource ForegroundDarkBrush}"
+                                       Margin="0 0 0 20"
+                                       />
+
+                            <!-- Email -->
+                            <TextBox Text="{Binding Email}" Tag="Korisničko ime" />
+
+                            <!-- Password -->
+                            <PasswordBox x:Name="PasswordText" Tag="Lozinka" Margin="0 0 0 30"/>
+
+                            <!-- Next button -->
+                            <Button Content="Prijava" 
+                                    local:IsBusyProperty.Value="{Binding LoginIsRunning}"
+                                    Command="{Binding LoginCommand}"
+                                    CommandParameter="{Binding ElementName=Page}" 
+                                    HorizontalAlignment="Center" />
+
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Border>
+</local:BasePage>
