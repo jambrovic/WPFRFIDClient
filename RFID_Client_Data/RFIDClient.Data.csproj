@@ -52,10 +52,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL\UserRepository.cs" />
-    <Compile Include="DAL\ReceiptRepository.cs" />
-    <Compile Include="DAL\TransactionRepository.cs" />
-    <Compile Include="DAL\UserSecurity.cs" />
+    <Compile Include="DataAccessLayer\UserRepository.cs" />
+    <Compile Include="DataAccessLayer\ReceiptRepository.cs" />
+    <Compile Include="DataAccessLayer\TransactionRepository.cs" />
+    <Compile Include="DataAccessLayer\UserSecurity.cs" />
     <Compile Include="DB\DBMongo.cs" />
     <Compile Include="ItemFactory.cs" />
     <Compile Include="Models\DALUser.cs" />
@@ -63,7 +63,7 @@
     <Compile Include="Models\ITransaction.cs" />
     <Compile Include="Models\IRepository.cs" />
     <Compile Include="Models\DALItem.cs" />
-    <Compile Include="DAL\ItemRepository.cs" />
+    <Compile Include="DataAccessLayer\ItemRepository.cs" />
     <Compile Include="Models\DALPayment.cs" />
     <Compile Include="Models\DALReceipt.cs" />
     <Compile Include="Models\DALReceiptTransaction.cs" />

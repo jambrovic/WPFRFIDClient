@@ -7,12 +7,18 @@
     {
         #region Private Members
 
+        /// <summary>
+        /// Instance of IReader interface
+        /// </summary>
         private static IReader m_Instance;
 
         #endregion
 
         #region Constructor
 
+        /// <summary>
+        /// Default constructor (private)
+        /// </summary>
         private ReaderFactory() { }
 
         #endregion

@@ -154,7 +154,6 @@
     <Compile Include="ValueConverters\BooleanToVisibilityConverter.cs" />
     <Compile Include="ViewModel\ItemsViewModel.cs" />
     <Compile Include="ViewModel\ItemViewModel.cs" />
-    <Compile Include="ViewModel\ReceiptViewModel - Copy.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\WindowViewModel.cs" />
     <Compile Include="ViewModel\PaymentViewModel.cs" />
