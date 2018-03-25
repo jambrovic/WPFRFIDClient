@@ -1,4 +1,4 @@
-﻿<local:BasePage x:TypeArguments="core:UserViewModel" x:Class="RFIDClient.Desktop.NewUserPage"
+﻿<local:BasePage x:TypeArguments="local:UserViewModel" x:Class="RFIDClient.Desktop.NewUserPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -73,7 +73,10 @@
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
 
-                            <Button Grid.Column="0" Margin="10 0 5 0">ODUSTANI</Button>
+                            <Button Grid.Column="0" Margin="10 0 5 0"
+                                    Command="{Binding CloseCommand}"
+                                    CommandParameter="{Binding ElementName=NewUser}"
+                                    >ODUSTANI</Button>
                             <Button Grid.Column="1" Margin="5 0 10 0"
                                     Command="{Binding CreateUserCommand}"
                                     CommandParameter="{Binding ElementName=NewUser}"

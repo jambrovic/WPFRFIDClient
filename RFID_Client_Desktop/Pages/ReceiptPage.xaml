@@ -181,6 +181,24 @@
                     Text="{Binding Path=Total, StringFormat={}{0:#\,0.00 Kn}}"
                     />
 
+                    <TextBlock 
+                    
+                    Text="RFID čitač:" 
+                    Style="{StaticResource Header}" 
+                    Margin="3"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    />
+
+                    <TextBlock 
+                    x:Name="txtConnectionState" 
+                    Style="{StaticResource Header}" 
+                    Margin="3"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Text="{Binding Path=ConnectionState}"
+                    />
+
                 </StackPanel>
 
 
@@ -235,10 +253,13 @@
 
         <Menu Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource BaseMenuStyle}">
             <MenuItem Header="_Aplikacija" Height="30" >
+                <MenuItem Header="_Novi korisnik" x:Name="mnuNewUser" Command="{Binding NewUserCommand}"></MenuItem>
+                <MenuItem Header="_Odjava" x:Name="mnuLogOut" Command="{Binding UserLogoutCommand}"></MenuItem>
                 <MenuItem Header="_Izlaz" x:Name="mnuExit" Command="{Binding ApplicationExitCommand}"></MenuItem>
             </MenuItem>
-            <MenuItem Header="_Račun" Height="30">
+            <MenuItem Header="_Prodaja" Height="30">
                 <MenuItem Header="_Novi račun" x:Name="mnuReceiptNew" Command="{Binding NewReceiptCommand}"></MenuItem>
+                <MenuItem Header="_Pregled prometa" x:Name="mnuDayOverview" Command="{Binding DayOverviewCommand}"></MenuItem>
             </MenuItem>
             <MenuItem Header="_Proizvodi" Height="30">
                 <MenuItem Header="_Novi proizvod" x:Name="mnuItemsNew" Command="{Binding NewItemCommand}"></MenuItem>

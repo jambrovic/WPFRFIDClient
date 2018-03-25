@@ -45,6 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\EntityConverter.cs" />
+    <Compile Include="Helpers\SecureStringHelpers.cs" />
+    <Compile Include="Repositories\IAnalyticsService.cs" />
     <Compile Include="Repositories\ItemRepositoryService.cs" />
     <Compile Include="ItemRepositoryServiceFactory.cs" />
     <Compile Include="Repositories\IRepositoryService.cs" />

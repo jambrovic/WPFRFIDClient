@@ -8,7 +8,7 @@ namespace RFIDClient.Arduino
     class Reader : IReader
     {
         #region Private Members
-        
+
         /// <summary>
         /// Serial port instance
         /// </summary>
@@ -37,7 +37,7 @@ namespace RFIDClient.Arduino
         /// Event that triggers on data receive from reader
         /// </summary>
         public event ReaderEventHandler onReaderDataReceived;
-
+        
         /// <summary>
         /// Event that is triggered when data is received
         /// </summary>
@@ -49,7 +49,7 @@ namespace RFIDClient.Arduino
         }
 
         #endregion
-        
+
         #region Constructor
 
         /// <summary>
@@ -71,6 +71,7 @@ namespace RFIDClient.Arduino
 
             //Subscription to event
             m_SerialPort.DataReceived += _serialPort_DataReceived;
+            
         }
 
         #endregion
@@ -80,9 +81,9 @@ namespace RFIDClient.Arduino
         /// <summary>
         /// Open communication channel
         /// </summary>
-        public void OpenCommunication()
+        public bool OpenCommunication()
         {
-            OpenPort();
+            return OpenPort();
         }
 
         /// <summary>
@@ -130,12 +131,22 @@ namespace RFIDClient.Arduino
         /// <returns>Returns true if success</returns>
         private bool OpenPort()
         {
-            //Check if port exists and is closed
-            if (m_SerialPort != null && !m_SerialPort.IsOpen)
+            try
             {
-                //open port
-                m_SerialPort.Open();
-                return true;
+
+                //Check if port exists and is closed
+                if (m_SerialPort != null && !m_SerialPort.IsOpen)
+                {
+                    //open port
+                    m_SerialPort.Open();
+                    //this.onConnectionChanged.Invoke(true);
+                    return true;
+                }
+            }
+            catch (System.Exception)
+            {
+                //this.onConnectionChanged.Invoke(false);
+                return false;
             }
             return false;
         }
@@ -151,6 +162,7 @@ namespace RFIDClient.Arduino
             {
                 m_SerialPort.Close();
                 m_SerialPort.DataReceived -= _serialPort_DataReceived;
+                //this.onConnectionChanged.Invoke(false);
                 return true;
             }
 

@@ -67,7 +67,7 @@
                                                     Binding="{Binding Name}"
                                                     ElementStyle="{StaticResource DataGridTextBlockAlignLeft}"/>
                                 <DataGridTextColumn Header="Jedinična cijena" 
-                                                    Binding="{Binding UnitPrice}"
+                                                    Binding="{Binding UnitPrice, StringFormat={}{0:#\,0.00}}"
                                                     ElementStyle="{StaticResource DataGridTextBlockAlignRight}"/>
 
                             </DataGrid.Columns>

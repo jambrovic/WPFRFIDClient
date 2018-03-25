@@ -2,7 +2,7 @@
 {
 
     public delegate void ReaderEventHandler(string data);
-
+    
     /// <summary>
     /// Interface for basic RFID functionality
     /// </summary>
@@ -12,6 +12,11 @@
         /// Event that triggers when data is received
         /// </summary>
         event ReaderEventHandler onReaderDataReceived;
+
+        /// <summary>
+        /// Event that triggers when connection is changed
+        /// </summary>
+        //event ReaderConnectionEventHandler onConnectionChanged;
 
         /// <summary>
         /// Instance of the RFID reader
@@ -25,7 +30,7 @@
         /// <summary>
         /// Open communication channel with reader
         /// </summary>
-        void OpenCommunication();
+        bool OpenCommunication();
 
         /// <summary>
         /// Close communication channel with reader

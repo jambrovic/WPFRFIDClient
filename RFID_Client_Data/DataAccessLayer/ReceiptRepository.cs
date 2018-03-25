@@ -24,12 +24,6 @@ namespace RFIDClient.Data
 
         public async Task<DALReceipt> SelectAsync(string id) => await _receiptsCollection.Find(Builders<DALReceipt>.Filter.Where(r => r.Id.Equals(ObjectId.Parse(id)))).SingleAsync();
         
-
-        public IEnumerable<DALReceipt> SelectReceipts(DateTime dateStart, DateTime dateEnd)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<long> DeleteAsync(string id)
         {
             DeleteResult result = await _receiptsCollection.DeleteOneAsync(Builders<DALReceipt>.Filter.Where(r => r.Id.Equals(ObjectId.Parse(id))));

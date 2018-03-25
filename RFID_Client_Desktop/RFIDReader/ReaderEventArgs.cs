@@ -2,25 +2,25 @@
 namespace RFIDClient.Desktop
 {
     /// <summary>
-    /// RFID module event event arguments
+    /// RFID module connection event arguments
     /// </summary>
-    public class RfidEventArgs : EventArgs
+    public class ReaderEventArgs : EventArgs
     {
         #region Private Members
 
         /// <summary>
-        /// RFID code
+        /// RFID connection state
         /// </summary>
-        private string mRfid;
+        private bool mIsConnected;
 
         #endregion
 
         #region Public Properties
 
         /// <summary>
-        /// RFID code
+        /// Reader connection state
         /// </summary>
-        public string RFID => mRfid;
+        public bool IsConnected => mIsConnected;
 
 
         #endregion
@@ -29,15 +29,15 @@ namespace RFIDClient.Desktop
         /// <summary>
         /// Constructor. Please use parametered constructor.
         /// </summary>
-        private RfidEventArgs() { }
+        private ReaderEventArgs() { }
 
         /// <summary>
         /// Default constructor
         /// </summary>
         /// <param name="rfid"></param>
-        public RfidEventArgs(string rfid)
+        public ReaderEventArgs(bool isConnected)
         {
-            mRfid = rfid;
+            mIsConnected = isConnected;
         } 
         #endregion
     }

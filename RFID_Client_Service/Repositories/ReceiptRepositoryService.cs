@@ -7,11 +7,16 @@ using System.Threading.Tasks;
 
 namespace RFIDClient.Service
 {
-    class ReceiptRepositoryService : IRepositoryService<ReceiptService>
+    class ReceiptRepositoryService : IRepositoryService<ReceiptService>, IAnalyticsService<ReceiptService>
     {
         public async Task<long> Delete(string id)
         {
             return await ReceiptFactory.GetInstance().DeleteAsync(id);
+        }
+
+        public async Task<List<ReceiptService>> GetPeriodAsync(DateTime startDate, DateTime endDate)
+        {
+            return EntityConverter.GetReceipts(await ReceiptAnalyticsFactory.Instance.GetPeriodAsync(startDate, endDate));
         }
 
         public async Task Insert(ReceiptService entity)

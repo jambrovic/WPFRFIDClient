@@ -33,7 +33,7 @@ namespace RFIDClient.Data
         public string Username { get; set; }
 
         [BsonElement("password")]
-        public SecureString Password { get; set; }
+        public String Password { get; set; }
 
         [BsonElement("dateInserted")]
         public DateTime DateInserted { get; set; }

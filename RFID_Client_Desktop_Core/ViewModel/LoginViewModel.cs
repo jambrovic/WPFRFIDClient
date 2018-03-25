@@ -65,6 +65,16 @@ namespace RFIDClient.Desktop.Core
                 {
                     IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.Receipt);
                 }
+                else
+                {
+                    if (parameter == null)
+                    {
+                        return;
+                    }
+                    
+                    var password = parameter as IHavePassword;
+                    password.SecurePassword.Clear();
+                }
                     
 
                 //(parameter as IHavePassword).SecurePassword

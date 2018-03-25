@@ -4,9 +4,7 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using RFIDClient.Service;
 using RFIDClient.Desktop.Core;
-using RFIDClient.Arduino;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 using RFIDClient.Desktop.Utils;
 using RFIDClient.Helpers;
@@ -19,7 +17,6 @@ namespace RFIDClient.Desktop
     /// </summary>
     public class ReceiptViewModel : BaseViewModel
     {
-
         #region Private Members
 
         /// <summary>
@@ -29,7 +26,7 @@ namespace RFIDClient.Desktop
 
         /// <summary>
         /// HashSet collection of scanned items identified by RFID code.
-        /// Sigle item (identified by RFID code) can be inserted only once.
+        /// Prevents inserting same RFID code multiple times.
         /// </summary>
         private HashSet<string> m_ReceiptScannedItemsBuffer;
 
@@ -133,9 +130,21 @@ namespace RFIDClient.Desktop
         /// </summary>
         public DateTime DateFinished { get; set; }
 
+        //TODO: Read it from DB
+        /// <summary>
+        /// Logged user
+        /// </summary>
         public string User { get; set; } = "Korisnik: Mario Jambrović";
 
+        /// <summary>
+        /// Current date and time
+        /// </summary>
         public string Clock { get; set; }
+
+        /// <summary>
+        /// Connection state
+        /// </summary>
+        public string ConnectionState { get; set; }
 
 
         #endregion
@@ -148,9 +157,24 @@ namespace RFIDClient.Desktop
         public ICommand ApplicationExitCommand { get; set; }
 
         /// <summary>
+        /// User log out command
+        /// </summary>
+        public ICommand UserLogoutCommand { get; set; }
+
+        /// <summary>
+        /// New user command
+        /// </summary>
+        public ICommand NewUserCommand { get; set; }
+
+        /// <summary>
         /// New receipt command
         /// </summary>
         public ICommand NewReceiptCommand { get; set; }
+
+        /// <summary>
+        /// Day overview command
+        /// </summary>
+        public ICommand DayOverviewCommand { get; set; }
 
         /// <summary>
         /// New item command
@@ -190,18 +214,21 @@ namespace RFIDClient.Desktop
             
             //Create commands
             ApplicationExitCommand = new RelayParameterizedCommand((parameter) => ApplicationExit(parameter));
+            UserLogoutCommand = new RelayParameterizedCommand((parameter) => UserLogout(parameter));
+            NewUserCommand = new RelayParameterizedCommand((parameter) => NewUser(parameter));
             NewReceiptCommand = new RelayParameterizedCommand((parameter) => NewReceipt(parameter));
+            DayOverviewCommand = new RelayParameterizedCommand((parameter) => DayOverview(parameter));
             NewItemCommand = new RelayParameterizedCommand((parameter) => NewItem(parameter));
             AllItemsCommand = new RelayParameterizedCommand((parameter) => GetAllItems(parameter));
             ApplicationOptionsCommand = new RelayParameterizedCommand((parameter) => ApplicationOptions(parameter));
             ApplicationAboutCommand = new RelayParameterizedCommand((parameter) => ApplicationAbout(parameter));
             CheckoutCommand = new RelayParameterizedCommand((parameter) => Checkout(parameter));
 
-            //Initialize the reader
-            //InitReader();
+            
+            //Subscription to events
             m_Rfid.OnDataReceived += Rfid_OnDataReceived;
-            //InitReaderConnectionMonitor();
-
+            m_Rfid.OnConnectionChanged += Rfid_OnConnectionChanged;
+            
             //Assign new ObjectId
             this.Id = ObjectIdFactory.GetObjectIdString();
 
@@ -211,6 +238,7 @@ namespace RFIDClient.Desktop
             //Init PaymentViewModel collection
             Payments = new ObservableCollection<PaymentViewModel>();
 
+            //Init scanned items buffer
             m_ReceiptScannedItemsBuffer = new HashSet<string>();
 
             //Set creation timestamp
@@ -251,6 +279,22 @@ namespace RFIDClient.Desktop
             Currency.SetCurrency(CurrencyName.KN);
         }
 
+        private void Rfid_OnConnectionChanged(object sender, ReaderEventArgs e)
+        {
+            switch (e.IsConnected)
+            {
+                case true:
+                    this.ConnectionState = "Connected";
+                    break;
+                case false:
+                    this.ConnectionState = "Disconnected";
+                    break;
+                default:
+                    this.ConnectionState = "Disconnected";
+                    break;
+            }
+        }
+
         private void Rfid_OnDataReceived(object sender, EventArgs e)
         {
             string rfid = (e as RfidEventArgs).RFID;
@@ -265,19 +309,24 @@ namespace RFIDClient.Desktop
 
         private void Checkout(object parameter)
         {
-            //If there are transactions but no payments
+            //If there are transactions but no payments open payment page
             if (Payments != null && Payments.Count == 0 && Total > 0.0M)
             {
                 PaymentViewModel paymentViewModel = new PaymentViewModel();
                 paymentViewModel.Receipt = this;
                 IoC.Get<ApplicationViewModel>().OpenPaymentPage(ApplicationPage.Payment, paymentViewModel);
             }
-            //If there are payments but balance is still not equal
+            //If there are payments but balance is still not equal open payment page
             else if (Total != Payments.Sum<PaymentViewModel>(p => p.Amount))
             {
                 PaymentViewModel paymentViewModel = new PaymentViewModel();
                 paymentViewModel.Receipt = this;
                 IoC.Get<ApplicationViewModel>().OpenPaymentPage(ApplicationPage.Payment, paymentViewModel);
+            }
+            //If balance is 0 do nothing
+            else if (Total == 0)
+            {
+                return;
             }
             //Finish the receipt
             else
@@ -286,14 +335,53 @@ namespace RFIDClient.Desktop
             }
         }
 
+
+        private void DayOverview(object parameter)
+        {
+            System.Diagnostics.Process.Start("http://www.google.com");
+        }
+
+        private void NewUser(object parameter)
+        {
+            PageHistory.CurrentPage = this;
+            IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.NewUser);
+        }
+
+        private void UserLogout(object parameter)
+        {
+            
+            switch (MessageBox.Show("Odjaviti korisnika?", "Upozorenje", MessageBoxButton.YesNo, MessageBoxImage.Warning)) 
+            {
+                case MessageBoxResult.No:
+                    {
+                        //do nothing
+                    }
+                    break;
+                case MessageBoxResult.Yes:
+                    {
+                        //TODO: Create user handling class
+                        //TODO: Log Out current user
+                        PageHistory.CurrentPage = this;
+                        IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.Login);
+                    }
+                    break;
+                default:
+                    {
+                        //Do nothing
+                    }
+                    break;
+            }
+        }
+
+
         private void ApplicationAbout(object parameter)
         {
-            throw new NotImplementedException();
+            //TODO: not yet implemented
         }
 
         private void ApplicationOptions(object parameter)
         {
-            throw new NotImplementedException();
+            //TODO: not yet implemented
         }
 
         /// <summary>
@@ -387,7 +475,7 @@ namespace RFIDClient.Desktop
                 Transactions = new ObservableCollection<TransactionViewModel>();
             }
 
-            //Duplicate of first if?
+            //Possible duplicate of the first if...
             if (!Transactions.Select(i => i.Barcode.Equals(transaction.Barcode)).FirstOrDefault())
             {
                 Transactions.Add(transaction);
@@ -448,7 +536,7 @@ namespace RFIDClient.Desktop
                 this.DateFinished = DateTime.Now.ToLocalTime();
 
                 //Insert the receipt
-                await ReceiptRepositoryServiceFactory.GetService().Insert(EntityHelpers.GetReceipt(this));
+                await ReceiptRepositoryServiceFactory.Instance.Insert(EntityHelpers.GetReceipt(this));
 
                 //Create new instance of receipt transactions
                 Transactions = new ObservableCollection<TransactionViewModel>();
@@ -523,14 +611,15 @@ namespace RFIDClient.Desktop
                         }
                         else
                         {
-                            throw new Exception(String.Format("Item with RFID {0} does not exists!", rfid));
+                            //throw new Exception(String.Format("Item with RFID {0} does not exists!", rfid));
                         }
                     }
                 }
             }
             catch (InvalidOperationException)
             {
-                MessageBox.Show(String.Format("Item not found.{0}Please insert the item into the system!{1}RFID code: {2}", Environment.NewLine, Environment.NewLine, rfid), "Warning", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                //Hide the message for now...
+                //MessageBox.Show(String.Format("Item not found.{0}Please insert the item into the system!{1}RFID code: {2}", Environment.NewLine, Environment.NewLine, rfid), "Warning", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
                 //Remove the item from buffer so it can be scanned again
                 m_ReceiptScannedItemsBuffer.Remove(rfid);
@@ -574,3 +663,5 @@ namespace RFIDClient.Desktop
         #endregion
     }
 }
+
+

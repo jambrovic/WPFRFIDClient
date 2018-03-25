@@ -6,7 +6,7 @@ using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RFIDClient.Desktop.Core
+namespace RFIDClient.Service
 {
     /// <summary>
     /// Helpers for the <see cref="SecureString"/> class

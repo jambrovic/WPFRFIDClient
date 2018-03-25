@@ -2,16 +2,13 @@
 {
     public sealed class ReceiptRepositoryServiceFactory
     {
-        private static readonly IRepositoryService<ReceiptService> _service = new ReceiptRepositoryService();
+        private static readonly IRepositoryService<ReceiptService> m_Instance = new ReceiptRepositoryService();
 
-        private ReceiptRepositoryServiceFactory()
-        {
+        private static readonly IAnalyticsService<ReceiptService> m_Analytics = new ReceiptRepositoryService();
 
-        }
+        private ReceiptRepositoryServiceFactory() { }
 
-        public static IRepositoryService<ReceiptService> GetService()
-        {
-            return _service;
-        }
+        public static IRepositoryService<ReceiptService> Instance => m_Instance;
+        public static IAnalyticsService<ReceiptService> Analytics => m_Analytics;
     }
 }

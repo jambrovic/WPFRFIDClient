@@ -153,8 +153,8 @@ namespace RFIDClient.Tests
                 }
             };
 
-            await ReceiptRepositoryServiceFactory.GetService().Insert(newReceipt);
-            ReceiptService insertedReceipt = await ReceiptRepositoryServiceFactory.GetService().Select(newReceipt.Id.ToString());
+            await ReceiptRepositoryServiceFactory.Instance.Insert(newReceipt);
+            ReceiptService insertedReceipt = await ReceiptRepositoryServiceFactory.Instance.Select(newReceipt.Id.ToString());
 
             Assert.AreEqual(newReceipt.Id, insertedReceipt.Id);
         }

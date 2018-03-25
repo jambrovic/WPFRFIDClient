@@ -1,4 +1,5 @@
 ﻿using RFIDClient.Desktop.Core;
+using System;
 using System.Windows.Input;
 
 namespace RFIDClient.Desktop
@@ -118,20 +119,34 @@ namespace RFIDClient.Desktop
 
         #region Private Methods
 
+        /// <summary>
+        /// Closes payment page
+        /// </summary>
+        /// <param name="parameter"></param>
         private void ClosePage(object parameter)
         {
             IoC.Get<ApplicationViewModel>().PaymentPage = ApplicationPage.None;
         }
 
+        /// <summary>
+        /// Add payment
+        /// </summary>
+        /// <param name="paymentType">Type of the payment to add</param>
         private void AddPayment(PaymentType paymentType)
         {
+            //Get current receipt model
             Receipt = ((PaymentViewModel)IoC.Application.CurrentPageViewModel).Receipt;
+
+            //Set payment view model properties
             Name = paymentType.ToString();
+            Code = Enum.GetName(typeof(PaymentType), paymentType);
             Id = ObjectIdFactory.GetObjectId().ToString();
             Amount = Receipt.Total;
-            //m_ReceiptViewModel.Payments.Add(this);
+
+            //Add payment to receipt view model
             Receipt.Payments.Add(this);
 
+            //Close the payment page
             IoC.Get<ApplicationViewModel>().PaymentPage = ApplicationPage.None;
 
         } 

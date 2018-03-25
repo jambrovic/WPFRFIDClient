@@ -10,7 +10,7 @@ namespace RFIDClient.Data
     /// Generic interface for CRUD operations on Mongo collections
     /// </summary>
     /// <typeparam name="T">Mongo collection class</typeparam>
-    public interface IRepository<T> where T : class
+    public interface IRepository<T> where T : new()
     {
         Task InsertAsync(T entity);
         Task<T> SelectAsync(string id);

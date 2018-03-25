@@ -28,7 +28,7 @@ namespace RFIDClient
 
         public string Username { get; set; }
 
-        public SecureString Password { get; set; }
+        public String Password { get; set; }
 
         public DateTime DateInserted { get; set; }
         

@@ -99,9 +99,6 @@
     </Compile>
     <Compile Include="Currency\Currency.cs" />
     <Compile Include="Currency\CurrencyType.cs" />
-    <Compile Include="ItemForms\ItemInsert.xaml.cs">
-      <DependentUpon>ItemInsert.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Models\EntityHelpers.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\PaymentType.cs" />
@@ -132,9 +129,6 @@
     <Compile Include="Pages\NewUserPage.xaml.cs">
       <DependentUpon>NewUserPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PaymentForms\PaymentWindow.xaml.cs">
-      <DependentUpon>PaymentWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -143,6 +137,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="RFIDReader\Rfid.cs" />
+    <Compile Include="RFIDReader\ReaderEventArgs.cs" />
     <Compile Include="RFIDReader\RfidEventArgs.cs" />
     <Compile Include="RFIDReader\RfidReader.cs" />
     <Compile Include="Utils\ObjectIdFactory.cs" />
@@ -154,6 +149,7 @@
     <Compile Include="ValueConverters\BooleanToVisibilityConverter.cs" />
     <Compile Include="ViewModel\ItemsViewModel.cs" />
     <Compile Include="ViewModel\ItemViewModel.cs" />
+    <Compile Include="ViewModel\UserViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\WindowViewModel.cs" />
     <Compile Include="ViewModel\PaymentViewModel.cs" />
@@ -161,10 +157,6 @@
     <Compile Include="ViewModel\ReceiptViewModel.cs" />
     <Compile Include="Window\WindowResizer.cs" />
     <Page Include="Controls\PageHost.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ItemForms\ItemInsert.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -193,10 +185,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\NewUserPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="PaymentForms\PaymentWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
